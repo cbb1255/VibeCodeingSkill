@@ -60,11 +60,13 @@ vibe-code/
 
 以下为 PowerShell 示例。将两个路径换成技能安装目录和项目根目录。Windows 可用 py -3 或 python，其他平台使用 python3 和对应的路径写法。
 
+启动新流程时，先在项目根目录运行 `git rev-parse --show-toplevel`。项目目录尚未创建时，从最近的现有父目录检查。确认项目不在任何仓库内时，先运行 `git init "<项目根目录>"`，成功后再执行下面的步骤。已有仓库直接沿用。
+
 ```powershell
 $skillPath = 'C:/path/to/vibe-code'
 $projectPath = 'C:/path/to/my-project'
 
-# 已有 Git 仓库时，先检查原有改动
+# 检查仓库的原有改动
 git -C $projectPath status --short
 
 # 按阶段 0 核对或补齐适用项目规则后，只补缺少的文档，再创建真实基线
